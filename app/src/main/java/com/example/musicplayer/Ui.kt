@@ -103,7 +103,7 @@ fun MusicPlayer(){
             Spacer(modifier = Modifier.height(10.dp))
 
             //Favourite Cards
-
+            Card()
         }
     }
 }

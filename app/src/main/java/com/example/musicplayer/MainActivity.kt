@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Card(music = MusicList(R.drawable.banner_1, "Heart over Mind", "Alan Walker & Daya"))
+            MusicPlayer()
         }
     }
 }
