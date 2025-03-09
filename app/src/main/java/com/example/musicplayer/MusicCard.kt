@@ -25,6 +25,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -37,11 +38,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 
@@ -60,7 +64,7 @@ fun MusicCard(music: MusicList) {
             pressedElevation = 5.dp
         ),
         colors = CardDefaults.cardColors(
-            containerColor = androidx.compose.ui.graphics.Color.Gray
+            containerColor = androidx.compose.ui.graphics.Color(0xFFa5a4a3)
         ),
         shape = RoundedCornerShape(20.dp)
     ) {
@@ -131,26 +135,6 @@ fun TopPlaylists(){
 //Favourite Cards
 @Composable
 fun FavouriteCard(){
-    Box(modifier = Modifier
-        .height(230.dp)
-        .fillMaxWidth(),
-    ){
-        LazyHorizontalGrid(
-            rows = GridCells.Fixed(3),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(musicList) { music ->
-                Box(modifier = Modifier.background(color = Color.Transparent)){
-
-                }
-            }
-        }
-    }
-}
-
-
-@Composable
-fun Card() {
     val scrollState = rememberScrollState()
 
     LaunchedEffect(Unit) {
@@ -165,33 +149,34 @@ fun Card() {
     Row(
         modifier = Modifier
             .horizontalScroll(scrollState)
-            .wrapContentWidth() // Ensure content size adapts to children
     ) {
-        repeat(2) { // Increase count if needed
+        repeat(2) {
             CardBox()
         }
     }
 }
 
 
+
 //Favourite Card inside Music Cards
 @Composable
 fun CardBox() {
-    OutlinedCard(
+    ElevatedCard(
         modifier = Modifier
             .width(390.dp)
             .height(270.dp)
             .padding(start = 5.dp, end = 5.dp)
-            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(12.dp)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(10.dp)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFa5a4a3))
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
-            Card(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.TopStart),
+            ElevatedCard(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.TopStart),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 shape = RoundedCornerShape(10.dp)){
                 Box {
                     Image(
@@ -200,13 +185,20 @@ fun CardBox() {
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                     )
-                    Icon(Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    TextButton(onClick = {},
+                        modifier = Modifier.height(35.dp).align(Alignment.TopStart),
+                        ){
+                        Icon(Icons.Default.PlayArrow,
+                            contentDescription = "Play",
+                            modifier = Modifier,
+                            tint = Color.White,
+                        )
+                        Text(text = "Play", color = Color.White)
+                    }
                 }
             }
-            Card(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.TopEnd),
+            ElevatedCard(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.TopEnd),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 shape = RoundedCornerShape(10.dp)){
                 Box {
                     Image(
@@ -215,13 +207,20 @@ fun CardBox() {
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                     )
-                    Icon(Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    TextButton(onClick = {},
+                        modifier = Modifier.height(35.dp).align(Alignment.TopStart),
+                    ){
+                        Icon(Icons.Default.PlayArrow,
+                            contentDescription = "Play",
+                            modifier = Modifier,
+                            tint = Color.White,
+                        )
+                        Text(text = "Play", color = Color.White)
+                    }
                 }
             }
-            Card(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.BottomStart),
+            ElevatedCard(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.BottomStart),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 shape = RoundedCornerShape(10.dp)){
                 Box {
                     Image(
@@ -230,14 +229,20 @@ fun CardBox() {
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                     )
-                    Icon(Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                        modifier = Modifier.align(Alignment.Center),
-                        tint = Color.White
-                    )
+                    TextButton(onClick = {},
+                        modifier = Modifier.height(35.dp).align(Alignment.TopStart),
+                    ){
+                        Icon(Icons.Default.PlayArrow,
+                            contentDescription = "Play",
+                            modifier = Modifier,
+                            tint = Color.White,
+                        )
+                        Text(text = "Play", color = Color.White)
+                    }
                 }
             }
-            Card(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.BottomEnd),
+            ElevatedCard(modifier = Modifier.height(120.dp).width(175.dp).align(Alignment.BottomEnd),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 shape = RoundedCornerShape(10.dp)){
                 Box {
                     Image(
@@ -246,13 +251,57 @@ fun CardBox() {
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                     )
-                    Icon(Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    TextButton(onClick = {},
+                        modifier = Modifier.height(35.dp).align(Alignment.TopStart),
+                    ){
+                        Icon(Icons.Default.PlayArrow,
+                            contentDescription = "Play",
+                            modifier = Modifier,
+                            tint = Color.White,
+                        )
+                        Text(text = "Play", color = Color.White)
+                    }
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Playlist(){
+    val scrollState = rememberScrollState()
+
+    Row(modifier = Modifier
+        .horizontalScroll(scrollState)){
+        repeat(5) {
+            PlayListCard(music = musicList[it])
+        }
+    }
+}
+
+@Composable
+fun PlayListCard(music: MusicList){
+    ElevatedCard(onClick = {},
+        modifier = Modifier
+            .height(190.dp)
+            .width(150.dp)
+            .padding(start = 5.dp),
+    ){
+        Card(modifier = Modifier.height(140.dp).width(150.dp)){
+            Image(painter = painterResource(music.image),
+                contentDescription = "",
+                contentScale = ContentScale.Crop
+            )
+        }
+        Text(text = "PUNK Music",
+            modifier = Modifier.padding(start = 10.dp, top = 5.dp),
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp
+        )
+        Text(text = "51 Songs",
+            modifier = Modifier.padding(start = 10.dp, top = 5.dp),
+            fontSize = 12.sp
+        )
     }
 }
 
